@@ -4,10 +4,11 @@ import pandas as pd
 from transformers import pipeline
 from src.utils import app_store_reviews, generate_wordcloud, create_rating_distribution_plot, app_data_from_url
 
-if 'key' not in st.session_state:
-    st.session_state['key'] = 'value'
-    
 # Initialize session state variables at the top level
+
+if 'key' not in st.session_state:
+    st.session_state.key = 'value'
+
 if "clicked" not in st.session_state:
     st.session_state.clicked = False
 
