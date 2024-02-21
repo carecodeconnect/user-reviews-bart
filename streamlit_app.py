@@ -11,12 +11,44 @@ if "clicked" not in st.session_state:
 if "reviews" not in st.session_state:
     st.session_state.reviews = None
 
+from streamlit_lottie import st_lottie
 import datetime
 import pandas as pd
 from transformers import pipeline
 from src.utils import app_store_reviews, generate_wordcloud, create_rating_distribution_plot, app_data_from_url
+import requests
 
-st.title("App Store Review Analysis")
+st.title("Apple Store Review Summariser :iphone:")
+
+# animated stars
+def load_lottieurl(url: str):
+    r = requests.get(url)
+    if r.status_code != 200:
+        return None
+    return r.json()
+
+lottie_stars = load_lottieurl(
+    "https://lottie.host/05701045-44c3-4741-a484-dbcc7f923cf7/C8quegn0oG.json"
+)
+
+st_lottie(lottie_stars, height=300, key="stars_animation")
+
+# include text to explain the app
+st.markdown(
+    """
+This Streamlit app provides insightful analysis of App Store reviews for any given app. 
+By inputting the App Store URL, users can summaries of positive and negative reviews within a specified date range.
+    """
+)
+
+st.markdown(
+    """
+    1. **Enter the URL of your app** in the input field above. To find the URL, open the app in the App Store and copy the URL from the address bar. For example, to analyze the reviews for the app 'Slack', you would copy the URL [https://apps.apple.com/de/app/slack/id618783545](https://apps.apple.com/de/app/slack/id618783545).
+    2. **Select the date range** for the reviews you want to analyze.
+    3. Click the **'Analyze reviews'** button to start the analysis.
+    """,
+    unsafe_allow_html=True
+)
 
 app_store_url = st.text_input("**Your App Store URL** 📱", placeholder="https://apps.apple.com/...")
 
