@@ -1,8 +1,9 @@
+import streamlit as st
+
 # Initialize session state for the "analyze" button at the top level
 if "clicked" not in st.session_state:
     st.session_state.clicked = False
-    
-import streamlit as st
+
 from src.utils import (
     app_store_reviews,
     generate_wordcloud,
