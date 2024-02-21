@@ -1,8 +1,4 @@
 import streamlit as st
-import datetime
-import pandas as pd
-from transformers import pipeline
-from src.utils import app_store_reviews, generate_wordcloud, create_rating_distribution_plot, app_data_from_url
 
 # Initialize session state variables at the top level
 
@@ -14,6 +10,11 @@ if "clicked" not in st.session_state:
 
 if "reviews" not in st.session_state:
     st.session_state.reviews = None
+
+import datetime
+import pandas as pd
+from transformers import pipeline
+from src.utils import app_store_reviews, generate_wordcloud, create_rating_distribution_plot, app_data_from_url
 
 st.title("App Store Review Analysis")
 
