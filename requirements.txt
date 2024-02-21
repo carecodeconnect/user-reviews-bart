@@ -9,3 +9,4 @@ transformers==4.37.2
 wordcloud==1.9.3
 torch
 inotify
+streamlit-lottie
