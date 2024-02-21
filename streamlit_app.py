@@ -10,6 +10,10 @@ import pandas as pd
 import time
 from transformers import pipeline
 
+# Initialize session state for the "analyze" button at the top level
+if "clicked" not in st.session_state:
+    st.session_state.clicked = False
+
 st.title("App Store Review Analysis")
 
 app_store_url = st.text_input(
@@ -40,10 +44,6 @@ def get_reviews():
 # Initialize session state for reviews if it doesn't exist
 if "reviews" not in st.session_state:
     st.session_state.reviews = None
-
-# Initialize session state for the "analyze" button to retain analysis
-if "clicked" not in st.session_state:
-    st.session_state.clicked = False
 
 def click_button():
     if st.session_state.clicked:
