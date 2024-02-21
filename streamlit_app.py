@@ -17,6 +17,7 @@ import pandas as pd
 from transformers import pipeline
 from src.utils import app_store_reviews, generate_wordcloud, create_rating_distribution_plot, app_data_from_url
 import requests
+#from TTS.api import TTS
 
 st.title("Apple Store Review Summariser :iphone:")
 
@@ -74,6 +75,17 @@ def get_reviews():
 def click_button():
     st.session_state.clicked = True
 
+# def text_to_speech(text):
+#     # Initialize the TTS object with default settings
+#     tts = TTS()
+#     # Assuming the method to generate speech is called 'synthesize' or similar
+#     try:
+#         speech = tts.synthesize(text)
+#         return speech
+#     except AttributeError:
+#         # Handle the case where the 'synthesize' method does not exist
+#         st.error("Failed to generate speech. Please check the TTS library's documentation for the correct method.")
+
 st.button("Analyze reviews", on_click=click_button)
 
 @st.cache_resource
@@ -118,7 +130,10 @@ reviews were positive**, with a rating of 4 or 5 stars.'
             positive_summary = summarize_reviews(positive_reviews)
             st.write("The following points were highlighted by satisfied users:")
             st.write(positive_summary)
-        else:
+            # Convert the summary to speech and display the audio player
+        #     positive_speech = text_to_speech(positive_summary)
+        #     st.audio(positive_speech, format='audio/mp3', start_time=0)
+        # else:
             st.write("No positive reviews to summarize.")
 
         # Summarize negative reviews
@@ -130,5 +145,9 @@ reviews were positive**, with a rating of 4 or 5 stars.'
             negative_summary = summarize_reviews(negative_reviews)
             st.write("The following issues were raised by dissatisfied users:")
             st.write(negative_summary)
+            # # Convert the summary to speech and display the audio player
+            # negative_speech = text_to_speech(negative_summary)
+            # st.audio(negative_speech, format='audio/mp3', start_time=0)
         else:
             st.write("No negative reviews to summarize.")
+
