@@ -1,3 +1,7 @@
+# Initialize session state for the "analyze" button at the top level
+if "clicked" not in st.session_state:
+    st.session_state.clicked = False
+    
 import streamlit as st
 from src.utils import (
     app_store_reviews,
@@ -9,10 +13,6 @@ import datetime
 import pandas as pd
 import time
 from transformers import pipeline
-
-# Initialize session state for the "analyze" button at the top level
-if "clicked" not in st.session_state:
-    st.session_state.clicked = False
 
 st.title("App Store Review Analysis")
 
