@@ -150,4 +150,15 @@ reviews were positive**, with a rating of 4 or 5 stars.'
             # st.audio(negative_speech, format='audio/mp3', start_time=0)
         else:
             st.write("No negative reviews to summarize.")
+        
+        # Show rating distribution
+        st.subheader("Rating distribution")
+        fig = create_rating_distribution_plot(st.session_state.reviews)
+        st.plotly_chart(fig)
+
+        image = generate_wordcloud(st.session_state.reviews)
+        st.image(image, caption="Word Cloud", use_column_width=True)
+
+        with st.expander("Inspect raw data"):
+            st.dataframe(st.session_state.reviews)
 
