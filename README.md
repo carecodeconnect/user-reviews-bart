@@ -28,10 +28,10 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
-# Collaboration
+## Collaboration
 
 Special thanks to @josh-nowak for contributions to the development and enhancement of this app.
 
-# License 
+## License 
 
 This project is licensed under the MIT License
